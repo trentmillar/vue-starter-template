@@ -3,7 +3,7 @@
 
   #root
     div(todo-page-component)
-      app-header
+      app-header(:user="user")
     app-page-content
 
 
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import Header from "./components/Header.vue"
-import PageContent from "./components/PageContent.vue"
+import Header from "./components/header/Header.vue"
+import PageContent from "./components/body/PageContent.vue"
 
 export default {
   name: 'root',
@@ -30,66 +30,57 @@ export default {
   },
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      user: {
+        id: 1234,
+        name: 'Trent'
+      }
     }
   }
+  /*data: {
+    user: null,
+    showLogInModal: false
+  }*/
 }
 </script>
 
 <style lang="stylus">
-#root
-  font-family 'Open Sans', sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  color #2c3e50
-
-body
-  padding 0
-  margin 0
-
-a
-  text-decoration none
-
-  
-
-
-
-
-.buttons
-  box-sizing border-box
-  cursor pointer
-  text-align center
-  user-select none
-  -moz-user-select none
-  -webkit-user-select none
-  -ms-user-select none
-  font-weight 500
-  display inline-block
-  padding 0 20px
-  border-radius 2px
-.buttons-small
-  width 100%
-  height 40px
-  font-size 16px
-  line-height 39px
-.buttons-teal
-  background #00b4cd
-  color #fff
-  border 1px solid #fff
-
-
-
-
-
-
-
-
-
-h1, h2
-  font-weight normal
-
-
-a
-  color #42b983
-
+  #root
+    font-family 'Open Sans', sans-serif
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    color #2c3e50
+  body
+    padding 0
+    margin 0
+  a
+    text-decoration none
+  .buttons
+    box-sizing border-box
+    cursor pointer
+    text-align center
+    user-select none
+    -moz-user-select none
+    -webkit-user-select none
+    -ms-user-select none
+    font-weight 500
+    display inline-block
+    padding 0 20px
+    border-radius 2px
+  .buttons-small
+    width 100%
+    height 40px
+    font-size 16px
+    line-height 39px
+  .buttons-teal
+    background #00b4cd
+    color #fff
+    border 1px solid #fff
+  .button-facebook
+    background-color #3a5795
+    color #fff
+    width 100%
+    height 40px
+    font-size 16px
+    border none
+    cursor pointer  
 </style>

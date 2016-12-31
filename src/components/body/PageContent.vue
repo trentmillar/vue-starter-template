@@ -5,15 +5,15 @@
 </template>
 
 <script>
-import LeftContainer from "./LeftContainer.vue"
-import RightContainer from "./RightContainer.vue"
+  import LeftContainer from "./LeftContainer.vue"
+  import RightContainer from "./RightContainer.vue"
 
-export default {
-  components: {
-    LeftContent: LeftContainer,
-    RightContent: RightContainer
+  export default {
+    components: {
+      LeftContent: LeftContainer,
+      RightContent: RightContainer
+    }
   }
-}
 </script>
 
 <style lang="stylus">
