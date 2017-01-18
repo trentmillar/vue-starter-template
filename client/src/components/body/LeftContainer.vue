@@ -3,15 +3,16 @@
         .categoriesContainer
           .title Categories
           ul.categories
-            a(href="/this") This
-            a(href="/that") That
-            a(href="/the") The
-            a(href="/other") Other
+            a(v-for="category in categories", href="/this") {{category}}
 </template>
 
 <script>
 export default {
-  
+  computed: {
+      categories() {
+        return this.$store.state.categories;
+      }
+    },
 }
 </script>
 

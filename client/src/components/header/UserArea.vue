@@ -24,7 +24,12 @@
   import LogIn from "../auth/LogIn.vue"
 
   export default{
-    props: ['user'],
+    /*props: ['user'],*/
+    computed: {
+      user() {
+        return this.$store.state.user;
+      }
+    },
     components: {
       LogIn
     }

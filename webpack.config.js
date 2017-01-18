@@ -1,8 +1,15 @@
 var path = require('path')
+var request = require('request')
+var moment = require('moment')
+var numeral = require('numeral')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: './client/src/main.js',
+  /*entry: {
+    app: './client/src/main.js',
+    vendor: ['vue', 'request', 'vuex']
+  },*/
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -24,6 +31,10 @@ module.exports = {
           }
           // other vue-loader options go here
         }
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       },
       {
         test: /\.js$/,
@@ -51,7 +62,13 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  node: {
+    console: true,
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {

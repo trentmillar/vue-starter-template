@@ -28,7 +28,6 @@
   import SellArea from "./SellArea.vue"
 
 	export default {
-    props: ['user'],
     components: {
       UserArea,
       LocationArea,

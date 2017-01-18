@@ -19,27 +19,58 @@
 </template>
 
 <script>
+//require('request')
+
 import Header from "./components/header/Header.vue"
 import PageContent from "./components/body/PageContent.vue"
+import Store from "./store"
+import request from "request"
+
+function fetchCategories(store) {
+  return store.dispatch('FETCH_CATEGORIES');
+}
+
+function fetchProducts(store) {
+  return store.dispatch('FETCH_PRODUCTS');
+}
+
+function fetchAll(store) {
+  return fetchProducts(store).then(() => {
+    fetchCategories(store)
+  }).then(() => {
+    console.log('Finished Fetching');
+    console.log('Products ' + store.state.products.length);
+    store.state.isLoaded = true;
+  })
+}
 
 export default {
   name: 'root',
+  store: Store,
   components:{
     appHeader: Header,
     appPageContent: PageContent
   },
-  data () {
+  beforeCreate: () => {
+  },
+  beforeMount: () => {
+    fetchAll(this.default.store).then(() => {
+      this.isLoading = false;
+    });
+  },
+  /*data () {
     return {
       user: {
         id: 1234,
         name: 'Trent'
       }
     }
-  }
-  /*data: {
-    user: null,
-    showLogInModal: false
   }*/
+  data() {
+      return {
+      isLoading: true
+    }
+  }
 }
 </script>
 
