@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import { fetchCategories, fetchProducts } from './api';
+import { eventBus } from './EventBus'
 
 Vue.use(Vuex);
 
@@ -39,14 +40,10 @@ export default new Vuex.Store({
       }
     },
     FETCH_PRODUCTS: ({ commit, state }) => {
-      if (!state.isLoaded) {
-        return fetchProducts()
-          .then(json => {
-            commit('SET_PRODUCTS', json)
-          })
-      } else {
-        return Promise.resolve()
-      }
+      return fetchProducts()
+        .then(json => {
+          commit('SET_PRODUCTS', json)
+        })
     }
   }
 });

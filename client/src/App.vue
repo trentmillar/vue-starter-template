@@ -7,7 +7,7 @@
     app-page-content
 
 
-  //
+  //-
     img(src="./assets/logo.png")
     h1 {{ msg }}
     h2 Links
@@ -19,29 +19,18 @@
 </template>
 
 <script>
-//require('request')
-
 import Header from "./components/header/Header.vue"
 import PageContent from "./components/body/PageContent.vue"
 import Store from "./store"
 import request from "request"
+import { eventBus } from "./store/EventBus"
 
 function fetchCategories(store) {
   return store.dispatch('FETCH_CATEGORIES');
 }
 
-function fetchProducts(store) {
-  return store.dispatch('FETCH_PRODUCTS');
-}
-
 function fetchAll(store) {
-  return fetchProducts(store).then(() => {
-    fetchCategories(store)
-  }).then(() => {
-    console.log('Finished Fetching');
-    console.log('Products ' + store.state.products.length);
-    store.state.isLoaded = true;
-  })
+  return fetchCategories(store)
 }
 
 export default {
@@ -51,23 +40,13 @@ export default {
     appHeader: Header,
     appPageContent: PageContent
   },
-  beforeCreate: () => {
-  },
-  beforeMount: () => {
-    fetchAll(this.default.store).then(() => {
+  beforeMount () {
+    fetchAll(this.$store).then(() => {
       this.isLoading = false;
     });
   },
-  /*data () {
-    return {
-      user: {
-        id: 1234,
-        name: 'Trent'
-      }
-    }
-  }*/
   data() {
-      return {
+    return {
       isLoading: true
     }
   }

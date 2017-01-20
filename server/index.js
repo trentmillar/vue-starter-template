@@ -15,31 +15,35 @@ const app = express()
     });
   }
 
-app.get('/api/categories', (req, res, next) => {
+app.post('/api/categories', (req, res, next) => {
   res.json({
     categories: ['This', 'That', 'The', 'Other']
   })
 })
 
-app.get('/api/products', (req, res, next) => {
+app.post('/api/products', (req, res, next) => {
+  if (req.body && req.body.lastUpdate) {
+    // TODO fetch delta
+  }
+
   res.json({
     products: [
-    {
-      id: 123456789,
-      image: "https://plaza.akamaized.net/133d/AajEnqKo_240.jpg",
-      title: "Product Number One",
-      price: 60.00,
-      created: moment().subtract(1, 'd').toDate(),
-      location: ''
-    },
-    {
-      id: 0988765432,
-      image: "https://plaza.akamaized.net/133d/AajEnqKo_240.jpg",
-      title: "Product Number Two",
-      price: 35.00,
-      created: moment().subtract(1, 'h').toDate(),
-      location: ''
-    }
+      {
+        id: 123456789,
+        image: "https://plaza.akamaized.net/133d/AajEnqKo_240.jpg",
+        title: "Product Number One",
+        price: 60.00,
+        created: moment().subtract(1, 'd').toDate(),
+        location: ''
+      },
+      {
+        id: 0988765432,
+        image: "https://plaza.akamaized.net/133d/AajEnqKo_240.jpg",
+        title: "Product Number Two",
+        price: 35.00,
+        created: moment().subtract(1, 'h').toDate(),
+        location: ''
+      }
     ]
   })
 })

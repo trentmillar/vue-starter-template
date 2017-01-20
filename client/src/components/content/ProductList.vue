@@ -6,17 +6,29 @@ div(todo-productlist-component).productList
 </template>
 
 <script>
+import Vue from "vue"
 import ProductItem from "./ProductItem.vue"
+import { eventBus } from "../../store/EventBus"
+
+let isInitialRender = true
 
 export default {
   components: {
     ProductItem
   },
-  computed: {
-      products() {
-        return this.$store.state.products;
-      }
-    },
+  beforeMount () {
+    eventBus.$on('productsUpdated', (products) => {
+      this.products = products
+    })
+  },
+  data() {
+    const data = {
+      loading: false,
+      products: isInitialRender ? this.$store.state.products : []
+    }
+    isInitialRender = false;
+    return data
+  },
 }
 </script>
 

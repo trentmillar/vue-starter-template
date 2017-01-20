@@ -12,11 +12,7 @@
   export default {
     data () {
       return {
-        showLogInModal: false,
-        user: {
-          username: '',
-          password: ''
-        }
+        showLogInModal: false
       }
     }
   }
